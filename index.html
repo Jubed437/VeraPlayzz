@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VeraPlayzz</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <!-- Background Video Motion -->
+    <video id="bg-video1" class="bg-video active" autoplay muted>
+        <source src="bg-videos/140733-775596128_medium.mp4" type="video/mp4">
+    </video>
+    <video id="bg-video2" class="bg-video" muted></video>
+    <div class="container">
+        <!-- Side Bar -->
+        <div class="side-container">
+            <div class="head">
+                <img  src="./logo.png" id="logo"  alt="VeraPlayzz Logo">
+                <h1 id="app-name">VeraPlayzz</h1>
+            </div>
+            <div class="input-container">
+                <input type="file" id="file-input" name="Upload Music" accept="audio/*" multiple>
+                <label for="file-input">Upload Music</label>
+            </div>
+            <div class="playlist">
+                <ul id="song-list">
+                    <!-- JavaScript is resposible for addingg songs here -->
+                </ul>
+            </div>
+        </div>
+        <div class="welcome-container">
+            <span><img src="./logo.png" alt="Welcome Image" id="welcome-img"></span>
+            <h4>Hey Buddy,</h4>
+            <h4>The Upload Button is Yours</h4>
+            <h4>Upload something and Start Listening, See ya !</h4>
+        </div>
+        <div class="player-container">
+            <div class="player">
+                <div id="cover-img" >
+                    <img src="./music-img.jpg" alt="Cover Image" class="cover-image">
+                </div>
+                <div class="song-info">
+                    <h4 id="song-title">Song Title</h4>
+                    <h5 id="song-artist">Artist Name</h5>
+                </div>
+                <div class="time-bar">
+                    <span id="current-time">0:00</span>
+                    <input type="range" id="progress-bar" value="0" min="0" max="100" oninput="seekTo(this.value)">
+                    <span id="total-duration">0:00</span>
+                </div>
+                <div class="controls">
+                    <button id="repeat-btn" onclick="toggleRepeat()"><i class="fa-solid fa-repeat"></i></button>
+                    <button id="prev-btn" onclick="playPrev()"><i class="fa-solid fa-backward-step"></i></button>
+                    <button id="play-btn" onclick="togglePlay()"><i class="fa-solid fa-pause"></i></button>
+                    <button id="next-btn" onclick="playNext()"><i class="fa-solid fa-forward-step"></i></button>
+                    <button id="favorite-btn"><i class="fa-solid fa-heart"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsmediatags/3.9.5/jsmediatags.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
