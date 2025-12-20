@@ -2,8 +2,6 @@ const videos = [
     'bg-videos/140733-775596128_medium.mp4',
     'bg-videos/186201-877345289_medium.mp4',
     'bg-videos/214592_small.mp4',
-    'bg-videos/232561_small.mp4',
-    'bg-videos/2619-865412755_medium.mp4'
 ];
 
 let currentVideoIndex = 0;
