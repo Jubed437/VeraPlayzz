@@ -1,6 +1,6 @@
 # VeraPlayzz 🎵
 
-**[Live Demo](#)** *(Add your demo link here)*
+vera-playzz.vercel.app
 
 ---
 
