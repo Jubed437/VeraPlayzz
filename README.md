@@ -1,6 +1,6 @@
 # VeraPlayzz 🎵
 
-vera-playzz.vercel.app
+[vera-playzz.vercel.app](https://vera-playzz.vercel.app/)
 
 ---
 
