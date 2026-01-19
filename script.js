@@ -47,6 +47,8 @@ let currentAudio = null;
 let currentSongIndex = 0;
 let isPlaying = false;
 let isRepeat = false;
+let currentVolume = 1;
+let isMuted = false;
 let input = document.getElementById("file-input");
 let list = document.getElementById("song-list");
 
@@ -173,6 +175,7 @@ function playSong(songId) {
     if (currentAudio) currentAudio.pause();
     
     currentAudio = new Audio(song.url);
+    currentAudio.volume = isMuted ? 0 : currentVolume;
     currentAudio.play();
     isPlaying = true;
     updatePlayButton();
@@ -240,6 +243,64 @@ function toggleRepeat() {
     const repeatBtn = document.getElementById('repeat-btn');
     repeatBtn.style.color = isRepeat ? '#1DB954' : 'white';
 }
+
+function setVolume(value) {
+    currentVolume = value / 100;
+    if (currentAudio) {
+        currentAudio.volume = isMuted ? 0 : currentVolume;
+    }
+    updateVolumeIcon();
+}
+
+function toggleMute() {
+    isMuted = !isMuted;
+    if (currentAudio) {
+        currentAudio.volume = isMuted ? 0 : currentVolume;
+    }
+    updateVolumeIcon();
+}
+
+function updateVolumeIcon() {
+    const muteBtn = document.getElementById('mute-btn');
+    const volumeSlider = document.getElementById('volume-slider');
+    
+    if (isMuted || currentVolume === 0) {
+        muteBtn.innerHTML = '<i class="fa-solid fa-volume-xmark"></i>';
+        volumeSlider.value = 0;
+    } else if (currentVolume < 0.5) {
+        muteBtn.innerHTML = '<i class="fa-solid fa-volume-low"></i>';
+        volumeSlider.value = currentVolume * 100;
+    } else {
+        muteBtn.innerHTML = '<i class="fa-solid fa-volume-high"></i>';
+        volumeSlider.value = currentVolume * 100;
+    }
+}
+
+function toggleSidebar() {
+    const sidebar = document.getElementById('side-container');
+    sidebar.classList.toggle('active');
+    
+    const toggleBtn = document.getElementById('sidebar-toggle');
+    const icon = toggleBtn.querySelector('i');
+    if (sidebar.classList.contains('active')) {
+        icon.className = 'fa-solid fa-xmark';
+    } else {
+        icon.className = 'fa-solid fa-bars';
+    }
+}
+
+// Close sidebar when clicking outside on mobile
+document.addEventListener('click', (e) => {
+    const sidebar = document.getElementById('side-container');
+    const toggleBtn = document.getElementById('sidebar-toggle');
+    
+    if (window.innerWidth <= 768 && 
+        sidebar.classList.contains('active') && 
+        !sidebar.contains(e.target) && 
+        !toggleBtn.contains(e.target)) {
+        toggleSidebar();
+    }
+});
 
 function seekTo(value) {
     if (!currentAudio) return;
